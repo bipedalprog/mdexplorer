@@ -9,8 +9,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.fail;
 
 public class HtmlConverterTest {
@@ -27,7 +26,9 @@ public class HtmlConverterTest {
         try (FileInputStream fis = new FileInputStream("src/test/resources/metadata.md")) {
             String markdown = IOUtils.toString(fis, StandardCharsets.UTF_8);
             String html = converter.convertToInnerHtml(markdown);
-            assertThat(html, is(equalTo("<p>This is the document. Some <em>bold</em> and some <em>italic</em>.</p>\n")));
+            assertThat(html, is(equalTo("<p>This is the document. Some <strong>bold</strong> and some <em>italic</em>.</p>\n")));
+            assertThat(converter.getMetadata("title"), notNullValue());
+            assertThat(converter.getMetadata("author"), notNullValue());
         } catch (Exception e) {
             fail("Missing test file.");
         }
