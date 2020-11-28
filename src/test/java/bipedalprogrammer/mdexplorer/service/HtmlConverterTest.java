@@ -1,17 +1,18 @@
 package bipedalprogrammer.mdexplorer.service;
 
 import io.micrometer.core.instrument.util.IOUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.fail;
 
+@RunWith(SpringRunner.class)
 public class HtmlConverterTest {
     @Test
     public void boldTextShouldRender() {
